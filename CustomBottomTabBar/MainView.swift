@@ -30,6 +30,7 @@ struct MainView: View {
                     .tag(Tab.bookmark)
             }
             CustomBottomTabBarView(currentTab: $selectedTab)
+                .padding(.bottom)
         }
     }
 }

@@ -6,24 +6,24 @@
 //
 
 import SwiftUI
+
 enum Tab: String, Hashable {
     case home = "house"
     case star = "star"
     case bookmark = "book.closed"
 }
+
+private let buttonDimen: CGFloat = 55
+
 struct CustomBottomTabBarView: View {
     
-    
     @Binding var currentTab: Tab
-    private let buttonDimen: CGFloat = 55
-    
     
     var body: some View {
         HStack {
         
             TabBarButton(imageName: Tab.home.rawValue)
                 .frame(width: buttonDimen, height: buttonDimen)
-//                .background(Color.red)
                 .onTapGesture {
                     currentTab = .home
                 }
@@ -32,8 +32,6 @@ struct CustomBottomTabBarView: View {
 
             TabBarButton(imageName: Tab.star.rawValue)
                 .frame(width: buttonDimen, height: buttonDimen)
-//                .background(Color.red)
-
                 .onTapGesture {
                     currentTab = .star
                 }
@@ -42,8 +40,6 @@ struct CustomBottomTabBarView: View {
             
             TabBarButton(imageName: Tab.bookmark.rawValue)
                 .frame(width: buttonDimen, height: buttonDimen)
-//                .background(Color.red)
-
                 .onTapGesture {
                     currentTab = .bookmark
                 }
@@ -55,31 +51,12 @@ struct CustomBottomTabBarView: View {
         .background(Color.white)
         .clipShape(Capsule(style: .continuous))
         .overlay {
-            ZStack {
-                Circle()
-                    .fill(Color.blue)
-                    .frame(width: buttonDimen , height: buttonDimen)
-                
-                TabBarButton(imageName: "\(currentTab.rawValue).fill")
-                    .foregroundColor(.white)
-            }
-            .offset(x: horizontalOffset)
+            SelectedTabCircleView(currentTab: $currentTab)
         }
-        .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 0)
+        .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 10)
         .animation(.interactiveSpring(response: 0.5, dampingFraction: 0.65, blendDuration: 0.65), value: currentTab)
     }
     
-    
-    private var horizontalOffset: CGFloat {
-        switch currentTab {
-        case .home:
-            return -85
-        case .star:
-            return 0
-        case .bookmark:
-            return 85
-        }
-    }
 }
 
 private struct TabBarButton: View {
@@ -96,4 +73,33 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         CustomBottomTabBarView(currentTab: .constant(.star))
     }
+}
+
+struct SelectedTabCircleView: View {
+    
+    @Binding var currentTab: Tab
+    
+    private var horizontalOffset: CGFloat {
+        switch currentTab {
+        case .home:
+            return -85
+        case .star:
+            return 0
+        case .bookmark:
+            return 85
+        }
+    }
+    
+    var body: some View {
+        ZStack {
+            Circle()
+                .fill(Color.blue)
+                .frame(width: buttonDimen , height: buttonDimen)
+            
+            TabBarButton(imageName: "\(currentTab.rawValue).fill")
+                .foregroundColor(.white)
+        }
+        .offset(x: horizontalOffset)
+    }
+
 }

@@ -11,6 +11,7 @@
 		E912792F29F41BA00068204C /* CustomBottomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E912792E29F41BA00068204C /* CustomBottomTabBarView.swift */; };
 		E912793129F41BA30068204C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E912793029F41BA30068204C /* Assets.xcassets */; };
 		E912793429F41BA30068204C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E912793329F41BA30068204C /* Preview Assets.xcassets */; };
+		E912793B29F439940068204C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E912793A29F439940068204C /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		E912792E29F41BA00068204C /* CustomBottomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBottomTabBarView.swift; sourceTree = "<group>"; };
 		E912793029F41BA30068204C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E912793329F41BA30068204C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E912793A29F439940068204C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				E912792C29F41BA00068204C /* CustomBottomTabBarApp.swift */,
 				E912792E29F41BA00068204C /* CustomBottomTabBarView.swift */,
+				E912793A29F439940068204C /* MainView.swift */,
 				E912793029F41BA30068204C /* Assets.xcassets */,
 				E912793229F41BA30068204C /* Preview Content */,
 			);
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E912792F29F41BA00068204C /* CustomBottomTabBarView.swift in Sources */,
+				E912793B29F439940068204C /* MainView.swift in Sources */,
 				E912792D29F41BA00068204C /* CustomBottomTabBarApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

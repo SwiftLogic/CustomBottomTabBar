@@ -6,16 +6,15 @@
 //
 
 import SwiftUI
-
+enum Tab: String, Hashable {
+    case home = "house"
+    case star = "star"
+    case bookmark = "book.closed"
+}
 struct CustomBottomTabBarView: View {
     
-    enum Tab: String, CaseIterable {
-        case home = "house"
-        case star = "star"
-        case bookmark = "book.closed"
-    }
     
-    @State private var currentTab: Tab = Tab.star
+    @Binding var currentTab: Tab
     private let buttonDimen: CGFloat = 55
     
     
@@ -95,6 +94,6 @@ private struct TabBarButton: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        CustomBottomTabBarView()
+        CustomBottomTabBarView(currentTab: .constant(.star))
     }
 }

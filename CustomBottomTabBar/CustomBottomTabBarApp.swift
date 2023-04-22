@@ -11,7 +11,7 @@ import SwiftUI
 struct CustomBottomTabBarApp: App {
     var body: some Scene {
         WindowGroup {
-            CustomBottomTabBarView()
+            MainView()
         }
     }
 }

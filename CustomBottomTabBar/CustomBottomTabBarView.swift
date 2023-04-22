@@ -8,41 +8,60 @@
 import SwiftUI
 
 struct CustomBottomTabBarView: View {
-    @State private var currentTab = 1
+    
+    enum Tab: String, CaseIterable {
+        case home = "house"
+        case star = "star"
+        case bookmark = "book.closed"
+    }
+    
+    @State private var currentTab: Tab = Tab.star
+    private let buttonDimen: CGFloat = 55
+    
+    
     var body: some View {
         HStack {
         
-            TabBarButton(imageName: "house.fill")
-                .frame(width: 50, height: 50)
+            TabBarButton(imageName: Tab.home.rawValue)
+                .frame(width: buttonDimen, height: buttonDimen)
+//                .background(Color.red)
                 .onTapGesture {
-                    currentTab = 0
+                    currentTab = .home
                 }
             
+            Spacer()
 
-            TabBarButton(imageName: "house.fill")
-                .frame(width: 50, height: 50)
+            TabBarButton(imageName: Tab.star.rawValue)
+                .frame(width: buttonDimen, height: buttonDimen)
+//                .background(Color.red)
+
                 .onTapGesture {
-                    currentTab = 1
+                    currentTab = .star
                 }
             
-            TabBarButton(imageName: "house.fill")
-                .frame(width: 50, height: 50)
+            Spacer()
+            
+            TabBarButton(imageName: Tab.bookmark.rawValue)
+                .frame(width: buttonDimen, height: buttonDimen)
+//                .background(Color.red)
+
                 .onTapGesture {
-                    currentTab = 2
+                    currentTab = .bookmark
                 }
 
         }
+        .frame(width: (buttonDimen * 3) + 60)
         .tint(Color.black)
-        .padding(10)
+        .padding(8)
         .background(Color.white)
         .clipShape(Capsule(style: .continuous))
         .overlay {
             ZStack {
                 Circle()
-                    .padding(8)
-                    .frame(width: 60, height: 60)
+                    .fill(Color.blue)
+                    .frame(width: buttonDimen , height: buttonDimen)
                 
-                TabBarButton(imageName: "camera.fill")
+                TabBarButton(imageName: "\(currentTab.rawValue).fill")
                     .foregroundColor(.white)
             }
             .offset(x: horizontalOffset)
@@ -52,13 +71,14 @@ struct CustomBottomTabBarView: View {
     }
     
     
-    var horizontalOffset: CGFloat {
-        if currentTab == 0 {
-            return -60
-        } else if currentTab == 1 {
+    private var horizontalOffset: CGFloat {
+        switch currentTab {
+        case .home:
+            return -85
+        case .star:
             return 0
-        } else {
-            return 60
+        case .bookmark:
+            return 85
         }
     }
 }
@@ -66,18 +86,10 @@ struct CustomBottomTabBarView: View {
 private struct TabBarButton: View {
     let imageName: String
     var body: some View {
-//        Button {
-//            //
-//        } label: {
-//            Image(systemName: imageName)
-//                .renderingMode(.template)
-//                .tint(.black)
-//
-//        }
         Image(systemName: imageName)
             .renderingMode(.template)
             .tint(.black)
-        .padding()
+            .fontWeight(.bold)
     }
 }
 

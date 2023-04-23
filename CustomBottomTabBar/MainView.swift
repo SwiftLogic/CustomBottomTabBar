@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     
-    @State private var selectedTab: Tab = Tab.star
+    @State private var selectedTab: Tab = Tab.bookmark
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -19,15 +19,25 @@ struct MainView: View {
                     .background(Color.red.opacity(0.5))
                     .tag(Tab.home)
                 
-                Text("STAR")
+                Text("EXPLORE")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.yellow.opacity(0.5))
-                    .tag(Tab.star)
+                    .tag(Tab.explore)
                 
                 Text("BOOKMARK")
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.green.opacity(0.5))
                     .tag(Tab.bookmark)
+                
+                Text("NOTIFICATION")
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color.green.opacity(0.5))
+                    .tag(Tab.notification)
+                
+                Text("PROFILE")
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color.green.opacity(0.5))
+                    .tag(Tab.profile)
             }
             CustomBottomTabBarView(currentTab: $selectedTab)
                 .padding(.bottom)

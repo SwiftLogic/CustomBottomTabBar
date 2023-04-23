@@ -7,11 +7,14 @@
 
 import SwiftUI
 
-enum Tab: String, Hashable {
+enum Tab: String, Hashable, CaseIterable {
     case home = "house"
-    case star = "star"
-    case bookmark = "book.closed"
+    case explore = "globe.europe.africa"
+    case bookmark = "star"
+    case notification = "bell"
+    case profile = "person"
 }
+
 
 private let buttonDimen: CGFloat = 55
 
@@ -30,12 +33,12 @@ struct CustomBottomTabBarView: View {
             
             Spacer()
 
-            TabBarButton(imageName: Tab.star.rawValue)
+            TabBarButton(imageName: Tab.explore.rawValue)
                 .frame(width: buttonDimen, height: buttonDimen)
                 .onTapGesture {
-                    currentTab = .star
+                    currentTab = .explore
                 }
-            
+
             Spacer()
             
             TabBarButton(imageName: Tab.bookmark.rawValue)
@@ -44,10 +47,26 @@ struct CustomBottomTabBarView: View {
                     currentTab = .bookmark
                 }
 
+            Spacer()
+            
+            TabBarButton(imageName: Tab.notification.rawValue)
+                .frame(width: buttonDimen, height: buttonDimen)
+                .onTapGesture {
+                    currentTab = .notification
+                }
+            
+            Spacer()
+            
+            TabBarButton(imageName: Tab.profile.rawValue)
+                .frame(width: buttonDimen, height: buttonDimen)
+                .onTapGesture {
+                    currentTab = .profile
+                }
+
         }
-        .frame(width: (buttonDimen * 3) + 60)
+        .frame(width: (buttonDimen * CGFloat(Tab.allCases.count)) + 60)
         .tint(Color.black)
-        .padding(8)
+        .padding(.vertical, 2.5)
         .background(Color.white)
         .clipShape(Capsule(style: .continuous))
         .overlay {
@@ -71,7 +90,7 @@ private struct TabBarButton: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        CustomBottomTabBarView(currentTab: .constant(.star))
+        CustomBottomTabBarView(currentTab: .constant(.explore))
     }
 }
 
@@ -82,11 +101,15 @@ struct SelectedTabCircleView: View {
     private var horizontalOffset: CGFloat {
         switch currentTab {
         case .home:
-            return -85
-        case .star:
-            return 0
+            return -138
+        case .explore:
+            return -72
         case .bookmark:
-            return 85
+            return 0
+        case .notification:
+            return 72
+        case .profile:
+            return 138
         }
     }
     
